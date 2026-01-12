@@ -1,0 +1,383 @@
+[
+    {
+        "id": "cat-001",
+        "companyId": "1",
+        "companyName": "Bâti-Pro Construction",
+        "title": "Catalogue de Services Construction 2024",
+        "description": "Catalogue complet des services de construction et rénovation proposés par Bâti-Pro Construction.",
+        "category": "Bâtiment & Travaux Publics",
+        "services": [
+            {
+                "name": "Construction neuve",
+                "description": "Construction de bâtiments résidentiels et commerciaux neufs",
+                "price": "À partir de 1 500 €/m²",
+                "duration": "Variable selon projet"
+            },
+            {
+                "name": "Rénovation complète",
+                "description": "Rénovation globale des bâtiments existants",
+                "price": "À partir de 800 €/m²",
+                "duration": "6 à 12 mois"
+            },
+            {
+                "name": "Extension",
+                "description": "Création d'extension de bâtiment",
+                "price": "À partir de 1 200 €/m²",
+                "duration": "3 à 6 mois"
+            },
+            {
+                "name": "Aménagement intérieur",
+                "description": "Aménagement personnalisé des intérieurs",
+                "price": "À partir de 500 €/m²",
+                "duration": "1 à 3 mois"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/bati-pro-construction-2024.pdf",
+        "downloadCount": 156,
+        "lastUpdated": "2024-11-01T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-002",
+        "companyId": "2",
+        "companyName": "RH Solutions Conseil",
+        "title": "Services RH - Offres de Formation 2024",
+        "description": "Offre complète de services en ressources humaines et formations professionnelles.",
+        "category": "Conseil & Services aux Entreprises",
+        "services": [
+            {
+                "name": "Recrutement spécialisé",
+                "description": "Sourcing et sélection de candidats qualifiés",
+                "price": "1 500 € à 5 000 € par recrutement",
+                "duration": "4 à 8 semaines"
+            },
+            {
+                "name": "Formation continue",
+                "description": "Formations professionnelles adaptées aux besoins",
+                "price": "200 € à 500 € par jour/personne",
+                "duration": "1 à 5 jours"
+            },
+            {
+                "name": "Conseil RH",
+                "description": "Audit et conseil en gestion RH",
+                "price": "2 000 € à 10 000 € par mission",
+                "duration": "2 à 6 mois"
+            },
+            {
+                "name": "Audit social",
+                "description": "Diagnostic complet de la situation sociale",
+                "price": "3 000 € à 8 000 €",
+                "duration": "4 à 6 semaines"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/rh-solutions-2024.pdf",
+        "downloadCount": 89,
+        "lastUpdated": "2024-10-15T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-003",
+        "companyId": "3",
+        "companyName": "Digital Web Agency",
+        "title": "Services Digitaux et Web 2024",
+        "description": "Portfolio complet de services numériques et création web pour les entreprises.",
+        "category": "Digital & Communication",
+        "services": [
+            {
+                "name": "Création de site web",
+                "description": "Conception et développement de sites web professionnels",
+                "price": "À partir de 3 000 €",
+                "duration": "4 à 8 semaines"
+            },
+            {
+                "name": "Référencement SEO",
+                "description": "Optimisation pour les moteurs de recherche",
+                "price": "500 € à 2 000 €/mois",
+                "duration": "Engagement minimum 6 mois"
+            },
+            {
+                "name": "Gestion Réseaux sociaux",
+                "description": "Création et gestion de contenu sur les réseaux",
+                "price": "300 € à 1 500 €/mois",
+                "duration": "Contrat mensualisé"
+            },
+            {
+                "name": "Développement E-commerce",
+                "description": "Création de boutiques en ligne complètes",
+                "price": "À partir de 5 000 €",
+                "duration": "6 à 12 semaines"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/digital-web-agency-2024.pdf",
+        "downloadCount": 234,
+        "lastUpdated": "2024-11-05T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-004",
+        "companyId": "4",
+        "companyName": "Expertise Comptable Île-de-France",
+        "title": "Services Comptables et Fiscaux 2024",
+        "description": "Offre complète de services comptables, fiscaux et de conseil pour entreprises.",
+        "category": "Services Financiers",
+        "services": [
+            {
+                "name": "Comptabilité générale",
+                "description": "Tenue complète de la comptabilité",
+                "price": "300 € à 800 €/mois",
+                "duration": "Engagement annuel"
+            },
+            {
+                "name": "Fiscalité d'entreprise",
+                "description": "Conseils et optimisation fiscale",
+                "price": "500 € à 2 000 €/an",
+                "duration": "Consultation régulière"
+            },
+            {
+                "name": "Paie et déclarations",
+                "description": "Gestion de la paie et déclarations sociales",
+                "price": "50 € à 150 € par salarié/mois",
+                "duration": "Service mensuel"
+            },
+            {
+                "name": "Conseil en gestion",
+                "description": "Accompagnement stratégique et financier",
+                "price": "1 000 € à 5 000 €/mois",
+                "duration": "Engagement minimum 6 mois"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/expertise-comptable-2024.pdf",
+        "downloadCount": 167,
+        "lastUpdated": "2024-10-20T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-005",
+        "companyId": "5",
+        "companyName": "Transport Express MEDEF",
+        "title": "Services de Transport et Logistique 2024",
+        "description": "Solutions complètes de transport et logistique en Île-de-France.",
+        "category": "Transport & Logistique",
+        "services": [
+            {
+                "name": "Livraison express 24h",
+                "description": "Livraison express dans un délai de 24 heures",
+                "price": "À partir de 15 € par colis",
+                "duration": "24 heures maximum"
+            },
+            {
+                "name": "Transport de marchandises",
+                "description": "Transport complet de marchandises",
+                "price": "À partir de 500 €",
+                "duration": "Variable selon distance"
+            },
+            {
+                "name": "Logistique et entreposage",
+                "description": "Stockage et gestion d'entrepôt",
+                "price": "À partir de 5 € par m²/mois",
+                "duration": "Flexible"
+            },
+            {
+                "name": "Transport frigorifique",
+                "description": "Transport de marchandises réfrigérées",
+                "price": "À partir de 20 € par colis",
+                "duration": "24 heures maximum"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/transport-express-2024.pdf",
+        "downloadCount": 112,
+        "lastUpdated": "2024-11-02T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-006",
+        "companyId": "6",
+        "companyName": "Pharmacie Plus MEDEF",
+        "title": "Services Pharmaceutiques et Santé 2024",
+        "description": "Catalogue des services et produits pharmaceutiques proposés.",
+        "category": "Santé & Bien-être",
+        "services": [
+            {
+                "name": "Services pharmaceutiques",
+                "description": "Conseil pharmaceutique personnalisé",
+                "price": "Gratuit en consultation",
+                "duration": "15-30 minutes"
+            },
+            {
+                "name": "Parapharmacie",
+                "description": "Produits de santé et beauté",
+                "price": "Variable selon produits",
+                "duration": "Disponibilité immédiate"
+            },
+            {
+                "name": "Conseil en bien-être",
+                "description": "Conseils en santé et prévention",
+                "price": "30 € à 50 € par consultation",
+                "duration": "30-45 minutes"
+            },
+            {
+                "name": "Orthopédie",
+                "description": "Fourniture de matériel orthopédique",
+                "price": "Variable selon articles",
+                "duration": "Selon modèles disponibles"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/pharmacie-plus-2024.pdf",
+        "downloadCount": 78,
+        "lastUpdated": "2024-10-30T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-007",
+        "companyId": "7",
+        "companyName": "Métal Industrie MEDEF",
+        "title": "Services de Métallurgie Industrielle 2024",
+        "description": "Solutions complètes de métallurgie et fabrication de pièces sur mesure.",
+        "category": "Industrie & Manufacturing",
+        "services": [
+            {
+                "name": "Usinage de précision",
+                "description": "Usinage CNC de précision",
+                "price": "À partir de 10 €/heure machine",
+                "duration": "Variable"
+            },
+            {
+                "name": "Soudure industrielle",
+                "description": "Soudure TIG, MIG, à l'arc",
+                "price": "À partir de 15 €/heure travail",
+                "duration": "Variable"
+            },
+            {
+                "name": "Découpe laser",
+                "description": "Découpe laser de précision",
+                "price": "À partir de 50 €/heure",
+                "duration": "Délai 2 à 5 jours"
+            },
+            {
+                "name": "Assemblage mécanique",
+                "description": "Assemblage et montage de pièces",
+                "price": "À partir de 12 €/heure",
+                "duration": "Variable"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/metal-industrie-2024.pdf",
+        "downloadCount": 145,
+        "lastUpdated": "2024-11-03T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-008",
+        "companyId": "8",
+        "companyName": "Mode & Style MEDEF",
+        "title": "Collections Mode 2024-2025",
+        "description": "Catalogue des collections de mode féminine et accessoires.",
+        "category": "Commerce & Distribution",
+        "services": [
+            {
+                "name": "Prêt-à-porter",
+                "description": "Collections de vêtements féminins",
+                "price": "50 € à 300 € par pièce",
+                "duration": "Stock permanent"
+            },
+            {
+                "name": "Accessoires",
+                "description": "Sacs, chaussures et accessoires",
+                "price": "20 € à 150 € par pièce",
+                "duration": "Stock variable"
+            },
+            {
+                "name": "Conseil en style",
+                "description": "Conseil personnel en mode et style",
+                "price": "50 € à 100 €",
+                "duration": "1 heure"
+            },
+            {
+                "name": "Service de retouches",
+                "description": "Retouches et modifications de vêtements",
+                "price": "10 € à 50 € selon intervention",
+                "duration": "3 à 7 jours"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/mode-style-2024.pdf",
+        "downloadCount": 98,
+        "lastUpdated": "2024-11-04T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-009",
+        "companyId": "9",
+        "companyName": "Avocat & Associés MEDEF",
+        "title": "Services Juridiques 2024",
+        "description": "Offre complète de services juridiques pour les entreprises.",
+        "category": "Services Juridiques",
+        "services": [
+            {
+                "name": "Droit des affaires",
+                "description": "Conseils en droit commercial et des contrats",
+                "price": "200 € à 500 € par heure",
+                "duration": "Selon besoin"
+            },
+            {
+                "name": "Droit social",
+                "description": "Conseils en droit du travail et social",
+                "price": "180 € à 400 € par heure",
+                "duration": "Selon besoin"
+            },
+            {
+                "name": "Contentieux",
+                "description": "Représentation en contentieux",
+                "price": "Sur devis",
+                "duration": "Variable"
+            },
+            {
+                "name": "Conseil juridique général",
+                "description": "Consultations juridiques régulières",
+                "price": "1 500 € à 5 000 €/mois",
+                "duration": "Engagement mensuel"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/avocat-medef-2024.pdf",
+        "downloadCount": 123,
+        "lastUpdated": "2024-11-01T00:00:00Z",
+        "published": true
+    },
+    {
+        "id": "cat-010",
+        "companyId": "10",
+        "companyName": "Restaurant Le Gourmet MEDEF",
+        "title": "Services de Restauration et Traiteur 2024",
+        "description": "Offre complète de services de restauration et traiteur.",
+        "category": "Hôtellerie & Restauration",
+        "services": [
+            {
+                "name": "Restaurant traditionnel",
+                "description": "Service de restauration sur place",
+                "price": "30 € à 80 € par assiette",
+                "duration": "Selon horaires d'ouverture"
+            },
+            {
+                "name": "Service de traiteur",
+                "description": "Catering pour événements et réceptions",
+                "price": "25 € à 60 € par personne",
+                "duration": "À partir de 20 personnes"
+            },
+            {
+                "name": "Événements privés",
+                "description": "Organisation complète d'événements",
+                "price": "Sur devis",
+                "duration": "À partir de 50 personnes"
+            },
+            {
+                "name": "Séminaires et banquets",
+                "description": "Accueil de séminaires et banquets",
+                "price": "Sur devis",
+                "duration": "À partir de 30 personnes"
+            }
+        ],
+        "fileUrl": "/uploads/catalogs/restaurant-gourmet-2024.pdf",
+        "downloadCount": 201,
+        "lastUpdated": "2024-11-05T00:00:00Z",
+        "published": true
+    }
+]
+

@@ -1,0 +1,41 @@
+
+networks:
+  proxy:
+    external: true
+  internal:
+    driver: bridge
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile.web
+    container_name: annuairemedef-web
+    networks:
+      - proxy
+      - internal
+    environment:
+      - VIRTUAL_HOST=${VIRTUAL_HOST:-annuaire.medefyvelines.com}
+      - LETSENCRYPT_HOST=${LETSENCRYPT_HOST:-annuaire.medefyvelines.com}
+      - LETSENCRYPT_EMAIL=${LETSENCRYPT_EMAIL:-support@digiconseil.fr}
+      - VIRTUAL_PROTO=http
+      - HTTPS_METHOD=redirect
+    volumes:
+      - ./public/companies.json:/usr/share/nginx/html/companies.json:rw
+      - ./uploads:/usr/share/nginx/html/uploads:rw
+    restart: unless-stopped
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    container_name: annuairemedef-api
+    networks:
+      - internal
+    env_file:
+      - ./api/.env
+    volumes:
+      - ./public:/app/public:rw
+      - ./uploads:/app/uploads:rw
+    restart: unless-stopped
+

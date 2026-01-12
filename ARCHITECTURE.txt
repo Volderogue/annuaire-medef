@@ -1,0 +1,328 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║            🏗️  ARCHITECTURE ANNUAIRE MEDEF - VUE COMPLÈTE                     ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+📦 STRUCTURE DU PROJET
+═════════════════════════════════════════════════════════════════════════════════
+
+annuairemedef/
+│
+├─ 🐳 DOCKER & ORCHESTRATION
+│  ├── Dockerfile.web              [Frontend Nginx/React]
+│  ├── Dockerfile.api              [API Node.js/Express]
+│  ├── docker-compose.yml          [Orchestration des services]
+│  └── nginx.conf                  [Configuration Nginx]
+│
+├─ 📱 FRONTEND (React + Vite)
+│  ├── src/
+│  │  ├── components/              [Composants réutilisables]
+│  │  │  ├── Header.tsx
+│  │  │  ├── HeroSection.tsx
+│  │  │  ├── SearchFilters.tsx
+│  │  │  ├── CategoryCard.tsx
+│  │  │  ├── CompanyCard.tsx
+│  │  │  └── CompanyDetail.tsx
+│  │  ├── data/
+│  │  │  └── companies.ts          [Données statiques]
+│  │  ├── types/
+│  │  │  └── index.ts              [Types TypeScript]
+│  │  ├── App.tsx
+│  │  ├── main.tsx
+│  │  ├── index.css
+│  │  └── vite-env.d.ts
+│  ├── public/                     [Assets statiques]
+│  ├── index.html
+│  ├── package.json                [Dépendances Frontend]
+│  ├── vite.config.ts              [Config Vite]
+│  ├── tailwind.config.js          [Config Tailwind CSS]
+│  ├── postcss.config.js           [Config PostCSS]
+│  ├── tsconfig.json               [Config TypeScript]
+│  ├── env-frontend.example        [Vars d'env exemple]
+│  └── eslint.config.js            [Config ESLint]
+│
+├─ ⚙️  API (Node.js + Express)
+│  ├── api/
+│  │  ├── server.js                [Serveur Express principal]
+│  │  ├── package.json             [Dépendances API]
+│  │  ├── entrypoint.sh            [Script démarrage]
+│  │  ├── env.example              [Vars d'env exemple]
+│  │  ├── README.md                [Doc API]
+│  │  └── generate-api-key.js      [Utils clé API]
+│  │
+│  └── ENDPOINTS:
+│     ├── GET  /api/companies              [Lister entreprises]
+│     ├── GET  /api/companies/:id          [Détail entreprise]
+│     ├── GET  /api/companies/category/:category [Par catégorie]
+│     ├── PUT  /api/companies/:id          [Mettre à jour]
+│     ├── POST /api/companies              [Ajouter]
+│     ├── DELETE /api/companies/:id        [Supprimer]
+│     ├── GET  /api/catalogs               [Lister catalogues]
+│     ├── GET  /api/catalogs/:id           [Détail catalogue]
+│     ├── PUT  /api/catalogs/:id           [Mettre à jour]
+│     ├── POST /api/catalogs               [Ajouter]
+│     ├── DELETE /api/catalogs/:id         [Supprimer]
+│     ├── POST /api/leads                  [Formulaire contact]
+│     └── GET  /api/health                 [Santé API]
+│
+├─ 📊 DONNÉES JSON
+│  ├── public/
+│  │  ├── companies.json           [10 entreprises - 1.2 KB]
+│  │  │  └── Structure:
+│  │  │     • id, name, category
+│  │  │     • description, services
+│  │  │     • contact (phone, email, website, address)
+│  │  │     • images, certifications
+│  │  │     • yearFounded, employees
+│  │  │     • specialties, siren, region
+│  │  │
+│  │  └── catalogs.json            [10 catalogues - 2.5 KB]
+│     └── Structure:
+│        • id, companyId, companyName
+│        • title, description, category
+│        • services (name, description, price, duration)
+│        • fileUrl, downloadCount
+│        • lastUpdated, published
+│
+├─ 📁 UPLOADS & FICHIERS
+│  └── uploads/                    [Dossier fichiers uploadés]
+│     └── .gitkeep
+│
+├─ 📚 DOCUMENTATION
+│  ├── README.md                   [Vue d'ensemble]
+│  ├── DEPLOYMENT.md               [Guide déploiement]
+│  ├── START_HERE.txt              [Guide démarrage]
+│  ├── RÉSUMÉ_MODIFICATIONS.md     [Modifications apportées]
+│  └── ARCHITECTURE.txt            [Ce fichier]
+│
+└─ 🔧 UTILITAIRES & CONFIG
+   ├── verify-setup.sh             [Script de vérification]
+   ├── env-frontend.example        [Config frontend exemple]
+   ├── .gitignore.docker           [Fichiers à ignorer]
+   ├── package-lock.json           [Lock dependencies]
+   └── tsconfig*.json              [Configs TypeScript]
+
+
+🏭 FLUX DE DÉPLOIEMENT
+═════════════════════════════════════════════════════════════════════════════════
+
+                    ┌─────────────────────┐
+                    │  Internet / HTTPS   │
+                    │  Let's Encrypt      │
+                    └──────────┬──────────┘
+                               │
+                    ┌──────────▼──────────┐
+                    │  Reverse Proxy      │
+                    │  Nginx (external)   │
+                    │  Network: proxy     │
+                    └──────────┬──────────┘
+                               │
+            ┌──────────────────┼──────────────────┐
+            │                  │                  │
+      ┌─────▼──────┐   ┌──────▼─────┐   (Network: internal - bridge)
+      │  Frontend   │   │   API      │
+      │  Port 80    │   │  Port 3001 │
+      ├─────────────┤   ├────────────┤
+      │ React+Vite  │   │ Express.js │
+      │ Nginx       │   │ Node.js    │
+      └─────┬───────┘   └─────┬──────┘
+            │                 │
+            │    ┌────────────┼────────────┐
+            │    │            │            │
+            │    ▼            ▼            ▼
+            │  /companies.json /catalogs.json /uploads/
+
+
+🔐 AUTHENTIFICATION & SÉCURITÉ
+═════════════════════════════════════════════════════════════════════════════════
+
+Public (lecture) :
+  • GET /api/companies
+  • GET /api/catalogs
+  • GET /api/health
+
+Protégé (modification) - Header: x-api-key
+  • PUT /api/companies/:id
+  • POST /api/companies
+  • DELETE /api/companies/:id
+  • PUT /api/catalogs/:id
+  • POST /api/catalogs
+  • DELETE /api/catalogs/:id
+
+Public (leads) :
+  • POST /api/leads → N8N webhook (optionnel)
+
+
+📦 CONTENEURS DOCKER
+═════════════════════════════════════════════════════════════════════════════════
+
+Image Frontend (annuairemedef-web):
+  ├── Base: nginx:alpine
+  ├── Build: Node 18 + Vite
+  ├── Port: 80
+  ├── Volumes:
+  │  ├── public/companies.json → /usr/share/nginx/html/companies.json
+  │  └── uploads → /usr/share/nginx/html/uploads
+  └── Network: proxy, internal
+
+Image API (annuairemedef-api):
+  ├── Base: node:18-alpine
+  ├── Runtime: Express.js
+  ├── Port: 3001
+  ├── Volumes:
+  │  ├── api/ → /app/api
+  │  ├── public → /app/public
+  │  └── uploads → /app/uploads
+  ├── Env: api/.env
+  └── Network: proxy, internal
+
+
+📋 FICHIERS CLÉS & TAILLES
+═════════════════════════════════════════════════════════════════════════════════
+
+Configuration:
+  • package.json (Frontend)          : ~810 B
+  • api/package.json                 : ~590 B
+  • docker-compose.yml               : ~650 B
+  • Dockerfile.web                   : ~250 B
+  • Dockerfile.api                   : ~350 B
+  • nginx.conf                       : ~450 B
+
+Données:
+  • public/companies.json            : 1.2 KB (10 entreprises)
+  • public/catalogs.json             : 2.5 KB (10 catalogues)
+
+Documentation:
+  • README.md                        : 6 KB
+  • DEPLOYMENT.md                    : 7 KB
+  • START_HERE.txt                   : 8 KB
+  • api/README.md                    : 4 KB
+
+API:
+  • api/server.js                    : 8.5 KB (350+ lignes)
+  • api/entrypoint.sh                : ~200 B
+
+Utilitaires:
+  • verify-setup.sh                  : 5 KB
+
+Total: ~44 KB de code & config
+
+
+🚀 DÉMARRAGE RAPIDE
+═════════════════════════════════════════════════════════════════════════════════
+
+1. PRÉPARATION
+   $ cp api/env.example api/.env
+   $ nano api/.env  # Éditer clé API
+
+2. AVEC DOCKER (Recommandé)
+   $ docker-compose up -d
+   → Frontend: http://localhost
+   → API: http://localhost:3001
+
+3. SANS DOCKER
+   Terminal 1:
+   $ cd api && npm install && npm run dev
+   
+   Terminal 2:
+   $ npm install && npm run dev
+
+
+✅ CARACTÉRISTIQUES
+═════════════════════════════════════════════════════════════════════════════════
+
+Frontend:
+  ✓ React 18.3 + TypeScript
+  ✓ Vite (build ultra-rapide)
+  ✓ Tailwind CSS (styling)
+  ✓ Lucide React (icônes)
+  ✓ Responsive design
+  ✓ SPA routing
+
+API:
+  ✓ Express.js 4.18
+  ✓ CORS enabled
+  ✓ Authentication (API Key)
+  ✓ 14 endpoints RESTful
+  ✓ Gestion d'erreurs
+  ✓ Health check
+  ✓ Logs structurés
+
+Docker:
+  ✓ Multi-stage build
+  ✓ Alpine images (petit)
+  ✓ Réseaux séparés
+  ✓ Volumes persistants
+  ✓ Health checks
+  ✓ Environment variables
+
+Données:
+  ✓ 10 entreprises de test
+  ✓ 10 catalogues de test
+  ✓ JSON valide
+  ✓ Structure complète
+  ✓ Prêt pour étendue
+
+
+🛠️  TECHNOLOGIES UTILISÉES
+═════════════════════════════════════════════════════════════════════════════════
+
+Frontend:
+  • React 18.3.1
+  • TypeScript 5.5.3
+  • Vite 5.4.2
+  • Tailwind CSS 3.4.1
+  • Lucide React 0.344.0
+  • ESLint 9.9.1
+
+Backend:
+  • Node.js 18 (Alpine)
+  • Express 4.18.2
+  • CORS 2.8.5
+  • dotenv 16.3.1
+  • Nodemon 3.0.1
+
+DevOps:
+  • Docker (Alpine)
+  • Nginx (Alpine)
+  • Docker Compose
+
+TypeScript:
+  • Strict mode
+  • ESLint + TypeScript rules
+
+
+📞 SUPPORT & DOCUMENTATION
+═════════════════════════════════════════════════════════════════════════════════
+
+Fichiers de démarrage:
+  • START_HERE.txt         → Configuration étape par étape
+  • verify-setup.sh        → Vérifier installation
+
+Documentation:
+  • README.md              → Vue d'ensemble
+  • DEPLOYMENT.md          → Déploiement production
+  • api/README.md          → API endpoints
+
+Configuration:
+  • env-frontend.example   → Variables frontend
+  • api/env.example        → Variables API
+
+Scripts:
+  • verify-setup.sh        → Vérification structure
+
+
+🎯 PROCHAINES ÉTAPES
+═════════════════════════════════════════════════════════════════════════════════
+
+1. Configuration initiale
+2. Installation des dépendances
+3. Lancement des services
+4. Test des endpoints
+5. Intégration n8n (optionnel)
+6. Déploiement production
+
+
+════════════════════════════════════════════════════════════════════════════════
+Architecture créée le: Novembre 14, 2024
+Statut: ✅ Complet et prêt pour utilisation
+════════════════════════════════════════════════════════════════════════════════

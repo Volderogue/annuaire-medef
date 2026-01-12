@@ -1,0 +1,244 @@
+╔════════════════════════════════════════════════════════════════════════════════╗
+║                     🚀 ANNUAIRE MEDEF - DÉMARRAGE RAPIDE                        ║
+╚════════════════════════════════════════════════════════════════════════════════╝
+
+📋 ÉTAPES DE CONFIGURATION INITIALE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1️⃣  CONFIGURATION API
+   ─────────────────────────────────────────────────────────────────────────────
+   $ cp api/env.example api/.env
+   $ nano api/.env
+   
+   Variables essentielles à modifier :
+   • API_KEY = Clé secrète forte (changez!)
+   • SITE_EMAIL = Votre email
+   • N8N_WEBHOOK_URL = (optionnel) URL webhook n8n
+
+
+2️⃣  CONFIGURATION FRONTEND
+   ─────────────────────────────────────────────────────────────────────────────
+   $ cp env-frontend.example .env
+   $ nano .env
+   
+   Variables :
+   • VITE_API_URL = URL API (http://localhost:3001)
+   • VITE_API_KEY = Même clé que dans api/.env
+
+
+3️⃣  PRÉPARATION DES DONNÉES
+   ─────────────────────────────────────────────────────────────────────────────
+   Les fichiers JSON sont déjà présents :
+   ✓ public/companies.json     - 10 entreprises d'exemple
+   ✓ public/catalogs.json      - 10 catalogues d'exemple
+
+
+4️⃣  DÉMARRAGE LOCAL
+   ─────────────────────────────────────────────────────────────────────────────
+   
+   Option A : Avec Docker Compose (recommandé)
+   ──────────────────────────────────────────
+   $ docker-compose up -d
+   
+   Accès :
+   • Frontend : http://localhost
+   • API : http://localhost:3001/api/health
+
+
+   Option B : Localement (sans Docker)
+   ──────────────────────────────────────────
+   
+   Terminal 1 - API :
+   $ cd api
+   $ npm install
+   $ npm run dev
+   → API sur http://localhost:3001
+   
+   Terminal 2 - Frontend :
+   $ npm install
+   $ npm run dev
+   → Frontend sur http://localhost:5173
+
+
+📁 STRUCTURE DU PROJET
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+annuairemedef/
+├── src/                        # 📱 Code React
+│   ├── components/             # Composants réutilisables
+│   ├── data/companies.ts       # Données des entreprises
+│   └── ...
+├── api/                        # ⚙️  Serveur Express
+│   ├── server.js              # Point d'entrée
+│   ├── package.json           # Dépendances
+│   ├── env.example            # Configuration exemple
+│   └── .env                   # ⚠️  Configuration (ne pas versionner)
+├── public/                     # 📊 Données JSON
+│   ├── companies.json         # 10 entreprises
+│   └── catalogs.json          # 10 catalogues
+├── Dockerfile.web             # 🐳 Image frontend
+├── Dockerfile.api             # 🐳 Image API
+├── docker-compose.yml         # 🐳 Orchestration
+├── README.md                  # 📚 Documentation
+├── DEPLOYMENT.md              # 🚀 Guide déploiement
+└── nginx.conf                 # ⚙️  Configuration Nginx
+
+
+🔌 ENDPOINTS API PRINCIPAUX
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Lire les données (aucune auth requise) :
+────────────────────────────────────────
+GET  /api/companies              - Toutes les entreprises
+GET  /api/companies/:id          - Une entreprise
+GET  /api/companies/category/:category - Par catégorie
+GET  /api/catalogs               - Tous les catalogues
+GET  /api/catalogs/:id           - Un catalogue
+GET  /api/health                 - État de l'API
+
+
+Modifier les données (clé API requise) :
+───────────────────────────────────────
+PUT  /api/companies/:id          - Mettre à jour une entreprise
+POST /api/companies              - Ajouter une entreprise
+DELETE /api/companies/:id        - Supprimer une entreprise
+PUT  /api/catalogs/:id           - Mettre à jour un catalogue
+POST /api/catalogs               - Ajouter un catalogue
+DELETE /api/catalogs/:id         - Supprimer un catalogue
+
+
+Soumettre un lead :
+──────────────────
+POST /api/leads                  - Formulaire de contact
+
+
+🔐 AUTHENTIFICATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Pour les opérations protégées, ajouter le header :
+──────────────────────────────────────────────────
+x-api-key: your-api-key-value
+
+Exemple avec curl :
+──────────────────
+curl -H "x-api-key: your-api-key" \
+  -X PUT http://localhost:3001/api/companies/1 \
+  -H "Content-Type: application/json" \
+  -d '{"name": "Nouvelle dénomination"}'
+
+
+📊 DONNÉES D'EXEMPLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Les fichiers publiques/companies.json et public/catalogs.json contiennent :
+
+Entreprises :
+  ✓ Bâti-Pro Construction (Bâtiment & Travaux Publics)
+  ✓ RH Solutions Conseil (Conseil)
+  ✓ Digital Web Agency (Digital & Communication)
+  ✓ Expertise Comptable IDF (Services Financiers)
+  ✓ Transport Express MEDEF (Transport & Logistique)
+  ✓ Pharmacie Plus MEDEF (Santé & Bien-être)
+  ✓ Métal Industrie MEDEF (Industrie)
+  ✓ Mode & Style MEDEF (Commerce)
+  ✓ Avocat & Associés MEDEF (Services Juridiques)
+  ✓ Restaurant Le Gourmet MEDEF (Hôtellerie & Restauration)
+
+Catalogues associés :
+  ✓ 10 catalogues de services avec prix et durées
+
+
+🛠️  COMMANDES UTILES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Docker Compose :
+──────────────
+docker-compose up -d          # Démarrer
+docker-compose down           # Arrêter
+docker-compose logs -f        # Logs en temps réel
+docker-compose restart api    # Redémarrer l'API
+docker-compose ps             # État des conteneurs
+
+
+Vérification API :
+──────────────
+curl http://localhost:3001/api/health
+curl http://localhost:3001/api/companies | jq
+curl http://localhost:3001/api/catalogs | jq
+
+
+NPM (Frontend) :
+──────────────
+npm install                   # Installer dépendances
+npm run dev                   # Développement (Vite)
+npm run build                 # Build production
+npm run lint                  # Vérifier le code
+
+
+NPM (API) :
+──────────
+cd api
+npm install                   # Installer dépendances
+npm run dev                   # Développement (nodemon)
+npm run start                 # Production
+
+
+📖 DOCUMENTATION
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Consultez les fichiers :
+  📄 README.md              - Vue d'ensemble complète
+  📄 api/README.md          - Documentation API
+  📄 DEPLOYMENT.md          - Guide de déploiement
+  📄 api/env.example        - Variables d'environnement API
+  📄 env-frontend.example   - Variables d'environnement Frontend
+
+
+🐛 DÉPANNAGE RAPIDE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+❌ L'API ne démarre pas
+   → Vérifier : docker-compose logs api
+   → Vérifier que le port 3001 est libre
+   → Vérifier la configuration api/.env
+
+❌ Erreur CORS
+   → Vérifier VITE_API_URL dans .env
+   → Vérifier que l'API est accessible
+
+❌ Données non chargées
+   → Vérifier que public/companies.json existe
+   → Vérifier les permissions des fichiers JSON
+   → curl http://localhost:3001/api/companies
+
+❌ Port déjà utilisé
+   → Lister les processus : lsof -i :3001
+   → Tuer le processus : kill -9 <PID>
+
+
+✅ CHECKLIST DE DÉMARRAGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+□ Configuration api/.env faite
+□ Configuration .env faite (optionnel)
+□ Files public/companies.json et public/catalogs.json présents
+□ Docker installé et démarré (si utilisation Docker)
+□ Dépendances installées (npm install)
+□ Services démarrés
+□ Frontend accessible
+□ API accessible et répond à /api/health
+□ Données chargées et affichées
+
+
+🎉 VOUS ÊTES PRÊT!
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Accédez aux services :
+  🌐 Frontend    : http://localhost
+  🔌 API         : http://localhost:3001/api/health
+  📊 Companies   : http://localhost:3001/api/companies
+  📚 Catalogs    : http://localhost:3001/api/catalogs
+
+
+Questions? Consultez la documentation ou contactez l'équipe de support.
+
